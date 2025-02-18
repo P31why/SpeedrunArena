@@ -12,9 +12,9 @@ public class PlayerInterect : MonoBehaviour
     private GameObject currentItem;
     private void Update()
     {
-        RaycastInterect();
+        RaycastHover();
     }
-    private void RaycastInterect()
+    public void RaycastHover()
     {
         _ray = _camera.ScreenPointToRay(crosshair.position);
         if (Physics.Raycast(_ray,out _hit,_distance,layerMask))
