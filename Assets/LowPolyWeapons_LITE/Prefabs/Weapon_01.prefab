@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 2940052935187277133}
   - component: {fileID: 7805543221411960228}
   - component: {fileID: 1076333309511380780}
+  - component: {fileID: 5540375992784087382}
   m_Layer: 3
   m_Name: Weapon_01
   m_TagString: Untagged
@@ -110,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4965438261709640327}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -120,7 +121,7 @@ Transform:
   - {fileID: 8371653277672579678}
   - {fileID: 8116155075977294907}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!64 &2940052935187277133
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1076333309511380780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,6 +189,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &5540375992784087382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965438261709640327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94bfaaea27aae0f409ae59e9992255b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHand: {fileID: 0}
 --- !u!1 &6650470630134122455
 GameObject:
   m_ObjectHideFlags: 0
