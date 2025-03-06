@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts;
 
-public class BasePistol : MonoBehaviour
+public class BasePistol : MonoBehaviour,IInteractableItem
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject _playerHand;
+    private bool inInventory;
+    public void Interact()
     {
-        
+        inInventory = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.transform.parent = _playerHand.transform;
+        gameObject.transform.position = _playerHand.transform.position;
+       // gameObject.transform.rotation = _playerHand.transform.rotation;
+        gameObject.transform.localRotation =  Quaternion.Euler(Vector3.forward);
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if(inInventory && Input.GetKeyDown(KeyCode.Q))
+        {
+            inInventory = false;
+            gameObject.transform.parent = null;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            //gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * 100);
+        }
     }
 }
