@@ -1,5 +1,5 @@
+using Assets.Scripts;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerInterect : MonoBehaviour
 {
@@ -12,27 +12,32 @@ public class PlayerInterect : MonoBehaviour
     private GameObject currentItem;
     private void Update()
     {
-        RaycastHover();
+        if(Input.GetKeyDown(KeyCode.E))
+            RaycastObject(true);
+        else RaycastObject(false);
     }
-    public void RaycastHover()
+    public void RaycastObject(bool buttonPressed)
     {
         _ray = _camera.ScreenPointToRay(crosshair.position);
         if (Physics.Raycast(_ray,out _hit,_distance,layerMask))
         {
-            Debug.Log(_hit.collider.gameObject.name);
+            //Debug.Log(_hit.collider.gameObject.name);
             if (_hit.collider != null)
             {
                 GameObject obj = _hit.collider.gameObject;
-                if (obj.GetComponent<Outline>() != null)
+                if (obj.GetComponent<IInteractableItem>() != null)
                 {
                     obj.GetComponent<Outline>().enabled = true;
                     currentItem = obj;
+                    if (buttonPressed)
+                        obj.GetComponent<IInteractableItem>().Interact();
+
                 }
             }
         }
         else
         {
-            if(currentItem != null)
+            if (currentItem != null)
                 currentItem.GetComponent<Outline>().enabled = false;
         }
     }

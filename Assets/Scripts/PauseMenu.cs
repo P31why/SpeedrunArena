@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    private bool isVisible;
+    private bool isPaused;
     private void Awake()
     {
-        isVisible = false;
+        isPaused = false;
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            isVisible = !isVisible;
-            Time.timeScale = isVisible ? 0:1;
+            isPaused = !isPaused;
+            Time.timeScale = isPaused ? 0:1;
         }
     }
 }

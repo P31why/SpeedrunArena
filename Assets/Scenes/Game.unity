@@ -56675,6 +56675,10 @@ PrefabInstance:
       propertyPath: _playerHand
       value: 
       objectReference: {fileID: 399449589}
+    - target: {fileID: 7723714892410863764, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
+      propertyPath: _shootForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -57569,7 +57573,7 @@ VideoPlayer:
   - 1
   m_Url: https://rutube.ru/video/178ade8efd34a6f3096d9eb703c8e80c/?playlist=403655
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1

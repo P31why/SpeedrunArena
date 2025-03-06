@@ -32,4 +32,11 @@ public class Moving : MonoBehaviour
         controller.Move(dir*speed*Time.deltaTime);
         controller.Move(velocity * Time.deltaTime);
     }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.TryGetComponent<Rigidbody>(out Rigidbody component))
+        {
+            hit.rigidbody.AddForce(dir * 10 * Time.deltaTime,ForceMode.Impulse);
+        }
+    }
 }
