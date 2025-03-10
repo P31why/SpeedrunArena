@@ -1,7 +1,7 @@
 using Assets.Scripts;
 using UnityEngine;
 
-public class AK74 : MonoBehaviour, IInteractableItem
+public class AK74 : MonoBehaviour, IEquipbleItem, IGun
 {
     [SerializeField]
     private GameObject _playerHand;
@@ -11,37 +11,33 @@ public class AK74 : MonoBehaviour, IInteractableItem
     private Transform _shootpoint;
     [SerializeField]
     private float _shootForce;
-    private bool inInventory;
-    public void Awake()
-    {
-        inInventory = false;
-    }
-    public void Interact()
+    [SerializeField]
+    private float _fireRate;
+
+    [SerializeField]
+    private float _timeToShoot=0;
+
+    public void Equip()
     {
         gameObject.GetComponent<Rigidbody>().isKinematic=true;
         gameObject.transform.parent = _playerHand.transform;
         gameObject.transform.position=_playerHand.transform.position;
         gameObject.transform.rotation = _playerHand.transform.rotation;
-        inInventory = true;
     }
-    private void Update()
+    public void Drop()
     {
-        if (inInventory && Input.GetKeyDown(KeyCode.Q))
-        {
-            inInventory = false;
-            gameObject.transform.parent = null;
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
-            gameObject.GetComponent<Rigidbody>().AddForce(-_playerHand.transform.forward*5,ForceMode.Impulse);
-        }
-        else if (inInventory && Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            Shoot();
-        }
+        gameObject.transform.parent = null;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        gameObject.GetComponent<Rigidbody>().AddForce(-_playerHand.transform.forward * 5, ForceMode.Impulse);
     }
-    private void Shoot()
+    public void Shoot()
     {
-        GameObject bulletObj=Instantiate(_bullet, _shootpoint.position,Quaternion.identity);
-        bulletObj.GetComponent<Rigidbody>().AddForce(_shootpoint.forward*_shootForce,ForceMode.Impulse);
-        
+
+        if (Time.time >= _timeToShoot)
+        {
+            _timeToShoot = Time.time + 1f / _fireRate;
+            GameObject bulletObj = Instantiate(_bullet, _shootpoint.position, Quaternion.identity);
+            bulletObj.GetComponent<Rigidbody>().AddForce(_shootpoint.forward * _shootForce, ForceMode.Force);
+        }
     }
 }
