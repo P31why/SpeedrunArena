@@ -17,8 +17,11 @@ public class Bullet : MonoBehaviour
                     Debug.Log("hit");
                     break;
                 }
+            case "Item":
+                {
+                    break;
+                }
             default:
-                Debug.Log("Hit obj"+collision.gameObject.name);
                 Destroy(gameObject);
                 break;
         }
