@@ -21,17 +21,25 @@ public class PlayerInterect : MonoBehaviour
         _ray = _camera.ScreenPointToRay(crosshair.position);
         if (Physics.Raycast(_ray,out _hit,_distance,layerMask))
         {
-            //Debug.Log(_hit.collider.gameObject.name);
             if (_hit.collider != null)
             {
                 GameObject obj = _hit.collider.gameObject;
-                if (obj.GetComponent<IInteractableItem>() != null)
+                if (obj.TryGetComponent<IInteractableItem>(out IInteractableItem item))
                 {
                     obj.GetComponent<Outline>().enabled = true;
                     currentItem = obj;
                     if (buttonPressed)
-                        obj.GetComponent<IInteractableItem>().Interact();
-
+                        item.Interact();
+                }
+                else if (obj.CompareTag("Item"))
+                {
+                    obj.GetComponent<Outline>().enabled = true;
+                    currentItem = obj;
+                    if (buttonPressed)
+                    {
+                        gameObject.GetComponent<Hand>().AddItem(obj);
+                        Debug.Log("+ item");
+                    }
                 }
             }
         }
